@@ -1,7 +1,5 @@
 pipeline{
-    agent{
-        label "node"
-    }
+    agent any
     stages{
         stage("A"){
             steps{
@@ -10,12 +8,12 @@ pipeline{
         }
         stage("B"){
             steps{
-                echo "========executing A========"
+                echo "========executing B========"
             }
         }
         stage("C"){
             steps{
-                echo "========executing A========"
+                echo "========executing C========"
             }
         }
     }
