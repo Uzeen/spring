@@ -27,5 +27,13 @@ pipeline{
                 }
             }
         }
+        stage("Creating the Container"){
+            steps{
+               sshagent(['tomcat_user']) {
+                   sh "ssh -o StrictHostKeyChecking=no ubuntu@65.2.35.90 'sudo docker container rm -f Dev'"
+                   sh "ssh -o StrictHostKeyChecking=no ubuntu@65.2.35.90 'sudo docker container run -p 8080:8080 -d --name Dev code:${env.BUILD_ID}'"
+                }
+            }
+        }
     }
 }
