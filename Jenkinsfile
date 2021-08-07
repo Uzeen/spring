@@ -19,5 +19,12 @@ pipeline{
                 echo "archive successfull"
             }
         }
+        stage("Copy war file in docker server"){
+            steps{
+               sshagent(['tomcat_user']) {
+                   sh 'scp -o StrictHostKeyChecking=no **/*SNAPSHOT.war 65.2.35.90:/opt/docker'
+                }
+            }
+        }
     }
 }
