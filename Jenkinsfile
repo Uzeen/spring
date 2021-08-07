@@ -1,19 +1,22 @@
 pipeline{
     agent any
     stages{
-        stage("A"){
+        stage("Checkout Java code"){
             steps{
-                echo "========executing A========"
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Uzeen/spring']]])
+                echo 'checkout successfull'
             }
         }
-        stage("B"){
+        stage("Build java artifact"){
             steps{
-                echo "========executing B========"
+                sh 'mvn clean install'
+                echo 'Build successfull'
             }
         }
-        stage("C"){
+        stage("archive articact"){
             steps{
-                echo "========executing C========"
+                archive '**/*SNAPSHOT.war'
+                echo "archive successfull"
             }
         }
     }
