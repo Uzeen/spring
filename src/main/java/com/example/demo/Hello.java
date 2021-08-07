@@ -10,6 +10,6 @@ class Hello {
 
   @GetMapping("/")
   String all() {
-    return "Hello Uzeen Singh!";
+    return "Hello Uzeen Singh! I am from pipeline commit";
   }
 }
