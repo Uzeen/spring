@@ -23,7 +23,7 @@ pipeline{
             steps{
                sshagent(['tomcat_user']) {
                    sh 'scp -o StrictHostKeyChecking=no **/*SNAPSHOT.war Dockerfile ubuntu@65.2.35.90:/home/ubuntu/docker'
-                   sh 'ssh -t ubuntu@65.2.35.90 "sudo docker build /home/ubuntu/docker -t code:${env.BUILD_ID}"'
+                   sh "ssh -o StrictHostKeyChecking=no ubuntu@65.2.35.90 'sudo docker build /home/ubuntu/docker/Dockerfile -t code:${env.BUILD_ID}'"
                 }
             }
         }
