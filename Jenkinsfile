@@ -22,7 +22,7 @@ pipeline{
         stage("Copy war file in docker server"){
             steps{
                sshagent(['tomcat_user']) {
-                   sh 'scp -o StrictHostKeyChecking=no **/*SNAPSHOT.war 65.2.35.90:/home/ubuntu/docker'
+                   sh 'scp -o StrictHostKeyChecking=no **/*SNAPSHOT.war Dockerfile ubuntu@65.2.35.90:/home/ubuntu/docker'
                 }
             }
         }
