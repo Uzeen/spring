@@ -11,7 +11,7 @@ class Hello {
 
   @GetMapping("/")
   String all() {
-    return "Hello nonu Singh! I am from pipeline commit";
+    return "Hello nonu Singh! I am from pipeline commit new changes";
   }
 
   @GetMapping("/{name}")
