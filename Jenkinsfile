@@ -22,16 +22,16 @@ pipeline{
         stage("Copy war file in docker server"){
             steps{
                sshagent(['tomcat_user']) {
-                   sh 'scp -o StrictHostKeyChecking=no **/*SNAPSHOT.war Dockerfile ubuntu@65.2.35.90:/home/ubuntu/docker'
-                   sh "ssh -o StrictHostKeyChecking=no ubuntu@65.2.35.90 'sudo docker build /home/ubuntu/docker -t code:${env.BUILD_ID}'"
+                   sh 'scp -o StrictHostKeyChecking=no **/*SNAPSHOT.war Dockerfile ubuntu@13.233.253.7:/home/ubuntu/docker'
+                   sh "ssh -o StrictHostKeyChecking=no ubuntu@13.233.253.7 'sudo docker build /home/ubuntu/docker -t code:${env.BUILD_ID}'"
                 }
             }
         }
         stage("Creating the Container"){
             steps{
                sshagent(['tomcat_user']) {
-                   sh "ssh -o StrictHostKeyChecking=no ubuntu@65.2.35.90 'sudo docker container rm -f Dev'"
-                   sh "ssh -o StrictHostKeyChecking=no ubuntu@65.2.35.90 'sudo docker container run -p 8080:8080 -d --name Dev code:${env.BUILD_ID}'"
+                   sh "ssh -o StrictHostKeyChecking=no ubuntu@13.233.253.7 'sudo docker container rm -f Dev'"
+                   sh "ssh -o StrictHostKeyChecking=no ubuntu@13.233.253.7 'sudo docker container run -p 8080:8080 -d --name Dev code:${env.BUILD_ID}'"
                 }
             }
         }
